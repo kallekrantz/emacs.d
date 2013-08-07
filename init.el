@@ -23,17 +23,20 @@
     hi2
     idle-highlight-mode
     ido-ubiquitous
+    iy-go-to-char
     leuven-theme
     magit
     magit
     markdown-mode
     multiple-cursors
     nrepl
+    nyan-mode
     paredit
     projectile
     rainbow-delimiters
     rainbow-mode
     smex
+    switch-window
     undo-tree
     geiser
     quack)
@@ -43,33 +46,21 @@
   (when (not (package-installed-p p))
     (package-install p)))
 
+;; Are we on a mac?
+(setq is-mac (equal system-type 'darwin))
 
-(load "~/.emacs.d/init-functions.el")
+(add-to-list 'load-path user-emacs-directory)
+
+(mapc 'require '(init-functions
+                 init-settings
+                 init-modes
+                 init-bindings
+                 init-eshell))
 
 (add-to-list 'load-path "~/.emacs.d/scripts/")
 
 (setq custom-file "~/.emacs.d/init-custom.el")
 (load custom-file)
-
-;; Other packages that need manual installation
-(custom-download-script "https://raw.github.com/dimitri/switch-window/master/switch-window.el"
-                        "switch-window.el")
-
-(custom-download-script "https://raw.github.com/doitian/iy-go-to-char/master/iy-go-to-char.el"
-                        "goto-char.el")
-
-;; NYAN CAT!
-(custom-clone-git "https://github.com/TeMPOraL/nyan-mode" "nyan-mode")
-(load "~/.emacs.d/nyan-mode/nyan-mode.el")
-
-(load "~/.emacs.d/init-settings.el")
-(load "~/.emacs.d/init-modes.el")
-(load "~/.emacs.d/init-bindings.el")
-(load "~/.emacs.d/init-eshell.el")
-
-(defun load-file-if-exists (filename)
-  (if (file-exists-p filename)
-      (load filename)))
 
 ;; A file with machine specific settings.
 (load-file-if-exists "~/.emacs.d/init-local.el")
