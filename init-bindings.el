@@ -39,8 +39,11 @@
 ;; So good!
 (global-set-key (kbd "C-c g") 'magit-status)
 
-;; Add a fullscreen toggle
-(global-set-key (kbd "M-RET") 'toggle-frame-fullscreen)
+;; Open project drawer
+(global-set-key (kbd "M-p") 'project-explorer-open)
+
+;; Add a fullscreen toggle - TODO: reenable in next Emacs release
+; (global-set-key (kbd "M-RET") 'toggle-frame-fullscreen)
 
 ;; Replace standard goto-line with goto-line-with-feedback
 (global-set-key (kbd "M-g g") 'goto-line-with-feedback)
@@ -53,5 +56,18 @@
 
 ;; Create new frame
 (define-key global-map (kbd "C-x C-n") 'make-frame-command)
+
+;; Cider/nrepl stuff
+;; I want history up/down without modifiers
+(define-key cider-repl-mode-map (kbd "<up>") 'cider-backward-input)
+(define-key cider-repl-mode-map (kbd "<down>") 'cider-forward-input)
+(define-key cider-repl-mode-map (kbd "C-<up>") 'previous-line)
+(define-key cider-repl-mode-map (kbd "C-<down>") 'next-line)
+
+;; ... and ac-cider with C-c C-d
+(define-key cider-repl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
+(define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
+(define-key cider-mode-map (kbd "C-c D") 'cider-doc)
+
 
 (provide 'init-bindings)

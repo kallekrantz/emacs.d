@@ -1,7 +1,6 @@
-(mapc 'require '(projectile hi2 ac-nrepl))
+(mapc 'require '(projectile ac-nrepl cider project-explorer))
 ;; Initializes modes I use.
 
-(add-hook 'prog-mode-hook 'esk-pretty-lambdas)
 (add-hook 'prog-mode-hook 'esk-add-watchwords)
 (add-hook 'prog-mode-hook 'idle-highlight-mode)
 
@@ -12,39 +11,38 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-;; Add keybindings to move nested blocks with C-, rsp. C-.
-(define-key haskell-mode-map (kbd "C-,") 'haskell-move-nested-left)
-(define-key haskell-mode-map (kbd "C-.") 'haskell-move-nested-right)
-
 ;; Use auto-complete as completion at point
 (defun set-auto-complete-as-completion-at-point-function ()
   (setq completion-at-point-functions '(auto-complete)))
-(add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
+
+(add-hook 'auto-complete-mode-hook
+          'set-auto-complete-as-completion-at-point-function)
 
 
-;; Configure nrepl (Clojure REPL) and clojure-mode
+;; Configure CIDER (Clojure REPL) and clojure-mode
 
-;; Use ac-nrepl for completion
-(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
-(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+(defun cider-mode-setup ()
+  "Activates paredit, rainbow delimiters and ac-nrepl"
+  (ac-nrepl-setup)
+  (paredit-mode))
+
+(add-hook 'cider-repl-mode-hook 'cider-mode-setup)
+(add-hook 'cider-interaction-mode-hook 'cider-mode-setup)
 (eval-after-load "auto-complete"
-   '(add-to-list 'ac-modes 'nrepl-mode))
-
-(define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
+  '(add-to-list 'ac-modes 'cider-repl-mode))
 
 ;; Paredit in clojure
 (add-hook 'clojure-mode-hook 'paredit-mode)
 
 ;; eldoc in clojure
-(add-hook 'nrepl-interaction-mode-hook
-          'nrepl-turn-on-eldoc-mode)
-
-(add-hook 'nrepl-interaction-mode-hook
-          'paredit-mode)
+(add-hook 'cider-interaction-mode-hook
+          'cider-turn-on-eldoc-mode)
 
 ;; Don't annoy me
-(setq nrepl-hide-special-buffers t)
-(setq nrepl-popup-stacktraces nil)
+(setq cider-hide-special-buffers t)
+(setq cider-popup-stacktraces nil)
+(setq cider-repl-pop-to-buffer-on-connect nil)
+(setq cider-repl-popup-stacktraces t)
 
 ;; Enable projectile for all things programming
 (add-hook 'prog-mode-hook 'projectile-on)
@@ -65,9 +63,6 @@
 
 ;; Keep track of recent files
 (recentf-mode)
-
-;; Enable Nyan mode
-(nyan-mode 1)
 
 ;; Easily navigate sillycased words
 (global-subword-mode 1)

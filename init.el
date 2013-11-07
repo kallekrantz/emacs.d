@@ -1,3 +1,7 @@
+;; Emacs 24 or higher!
+(when (< emacs-major-version 24)
+  (error "This setup requires Emacs v24, or higher. You have: v%d" emacs-major-version))
+
 ;; Configure package manager
 (require 'package)
 
@@ -14,34 +18,47 @@
   (package-refresh-contents))
 
 (defvar my-pkgs
-  '(ac-nrepl
+  '(; Basic functionality
     ace-jump-mode
     browse-kill-ring
-    clojure-mode
-    flycheck
+    dash
     flx-ido
-    haskell-mode
-    hi2
+    flycheck
     idle-highlight-mode
     ido-ubiquitous
     iy-go-to-char
-    leuven-theme
     magit
-    magit
-    markdown-mode
     multiple-cursors
-    nrepl
     nyan-mode
     paredit
+    project-explorer
     projectile
+    puppet-mode
     rainbow-delimiters
     rainbow-mode
     smex
+    smart-mode-line
     switch-window
     undo-tree
-    geiser
-    quack)
+
+    ; Clojure
+    ac-nrepl
+    clojure-cheatsheet
+    cider
+    clojure-mode
+;    nrepl-eval-sexp-fu
+)
   "A list of packages to install at launch.")
+
+(defvar evil-pkgs
+  '(evil
+    evil-leader
+    evil-tabs
+    evil-paredit
+    key-chord
+    surround)
+  "Evil related packages"
+)
 
 (dolist (p my-pkgs)
   (when (not (package-installed-p p))
@@ -49,6 +66,14 @@
 
 ;; Are we on a mac?
 (setq is-mac (equal system-type 'darwin))
+
+;; Is this being used by a vim user?
+(setq is-vim-mode nil)
+
+(when is-vim-mode
+  (dolist (p evil-pkgs)
+    (when (not (package-installed-p p))
+      (package-install p))))
 
 (add-to-list 'load-path user-emacs-directory)
 
@@ -58,15 +83,22 @@
                  init-bindings
                  init-eshell))
 
+(when is-vim-mode
+  (require 'init-evil))
+
 (add-to-list 'load-path "~/.emacs.d/scripts/")
 
 (setq custom-file "~/.emacs.d/init-custom.el")
 (load custom-file)
 
+(custom-download-script
+ "https://gist.github.com/gongo/1789605/raw/526e3f21dc7d6cef20951cf0ce5d51b90b7821ff/json-reformat.el"
+ "json-reformat.el")
+
 ;; A file with machine specific settings.
 (load-file-if-exists "~/.emacs.d/init-local.el")
 
-;; IRC configuration (erc)
+;; IRC configuration
 ;; Actual servers and such are loaded from irc.el
 (load-file-if-exists "~/.emacs.d/init-irc.el")
 
