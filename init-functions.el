@@ -58,6 +58,14 @@
   (if (file-exists-p filename)
       (load filename)))
 
+;; These are my own functions, not tazjins
+(defun invert-colors ()
+  (interactive)
+  (invert-face 'default)
+)
+
+
+
 ;; These come from magnars, he's got some awesome things.
 
 (defun goto-line-with-feedback ()
@@ -99,4 +107,7 @@ Including indent-buffer, which should not be called automatically on save."
       (find-file (concat "/sudo:root@localhost:" (ido-read-file-name "File: ")))
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
+
 (provide 'init-functions)
+
+
