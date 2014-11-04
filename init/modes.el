@@ -1,4 +1,4 @@
-(mapc 'require '(projectile ac-nrepl cider project-explorer))
+(mapc 'require '(projectile ac-cider-compliment cider))
 ;; Initializes modes I use.
 
 (add-hook 'prog-mode-hook 'esk-add-watchwords)
@@ -18,13 +18,16 @@
 (add-hook 'auto-complete-mode-hook
           'set-auto-complete-as-completion-at-point-function)
 
-
 ;; Configure CIDER (Clojure REPL) and clojure-mode
 
 (defun cider-mode-setup ()
   "Activates paredit, rainbow delimiters and ac-nrepl"
-  (ac-nrepl-setup)
+  (ac-cider-compliment-setup)
+  (ac-flyspell-workaround)
   (paredit-mode))
+
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes cider-mode))
 
 (add-hook 'cider-repl-mode-hook 'cider-mode-setup)
 (add-hook 'cider-interaction-mode-hook 'cider-mode-setup)
@@ -45,13 +48,17 @@
 (setq cider-repl-popup-stacktraces t)
 
 ;; Enable projectile for all things programming
-(add-hook 'prog-mode-hook 'projectile-on)
+(add-hook 'prog-mode-hook 'projectile-mode)
 
 ;; Enable rainbow-delimiters for all things programming
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 ;; Enable Paredit in Emacs Lisp mode
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+
+;; Configure Haskell mode
+;; Indentation ...
+(add-hook 'haskell-mode-hook 'hi2-mode)
 
 ;; Always highlight matching brackets
 (show-paren-mode 1)
@@ -71,7 +78,7 @@
 (auto-compression-mode t)
 
 ;;Load .sl files into rsl-mode
-(add-to-list 
+(add-to-list
  'auto-mode-alist
  '("\\.sl" . rsl-mode))
 
@@ -80,4 +87,4 @@
  'auto-mode-alist
  '("\\.m$" . octave-mode))
 
-(provide 'init-modes)
+(provide 'modes)

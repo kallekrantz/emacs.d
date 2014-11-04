@@ -1,7 +1,3 @@
-;; Emacs 24 or higher!
-(when (< emacs-major-version 24)
-  (error "This setup requires Emacs v24, or higher. You have: v%d" emacs-major-version))
-
 ;; Configure package manager
 (require 'package)
 
@@ -12,53 +8,47 @@
 ;; precendence.
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
+;; And load things!
+(package-refresh-contents)
 (package-initialize)
-
-(when (not package-archive-contents)
-  (package-refresh-contents))
 
 (defvar my-pkgs
   '(; Basic functionality
     ace-jump-mode
+    ack-and-a-half
     browse-kill-ring
+    confluence
     dash
     flx-ido
     flycheck
+    go-mode
+    haskell-mode
     idle-highlight-mode
     ido-ubiquitous
     iy-go-to-char
     magit
     multiple-cursors
+    mvn
     nyan-mode
     paredit
-    project-explorer
+    password-store
     projectile
     puppet-mode
     rainbow-delimiters
     rainbow-mode
+    rust-mode
+    s
     smex
     smart-mode-line
     switch-window
     undo-tree
 
     ; Clojure
-    ac-nrepl
-    clojure-cheatsheet
+    ac-cider-compliment
     cider
     clojure-mode
-;    nrepl-eval-sexp-fu
 )
   "A list of packages to install at launch.")
-
-(defvar evil-pkgs
-  '(evil
-    evil-leader
-    evil-tabs
-    evil-paredit
-    key-chord
-    surround)
-  "Evil related packages"
-)
 
 (dolist (p my-pkgs)
   (when (not (package-installed-p p))
@@ -67,29 +57,24 @@
 ;; Are we on a mac?
 (setq is-mac (equal system-type 'darwin))
 
-;; Is this being used by a vim user?
-(setq is-vim-mode nil)
+;; Or on Linux?
+(setq is-linux (equal system-type 'gnu/linux))
 
-(when is-vim-mode
-  (dolist (p evil-pkgs)
-    (when (not (package-installed-p p))
-      (package-install p))))
+;; What's the home folder?
+(defvar home-dir)
+(setq home-dir (expand-file-name "~"))
 
-(add-to-list 'load-path user-emacs-directory)
+(add-to-list 'load-path (concat user-emacs-directory "init"))
 
-(mapc 'require '(init-functions
-                 init-settings
-                 init-modes
-                 init-hooks
-                 init-bindings
-                 init-eshell))
+(mapc 'require '(functions
+                 settings
+                 modes
+                 bindings
+                 eshell-setup))
 
-(when is-vim-mode
-  (require 'init-evil))
+(add-to-list 'load-path (concat user-emacs-directory "scripts"))
 
-(add-to-list 'load-path "~/.emacs.d/scripts/")
-
-(setq custom-file "~/.emacs.d/init-custom.el")
+(setq custom-file (concat user-emacs-directory "init/custom.el"))
 (load custom-file)
 
 (custom-download-script
@@ -97,7 +82,7 @@
  "json-reformat.el")
 
 (custom-download-script
- "http://accad.osu.edu/~smay/RManNotes/rsl-mode.el" 
+ "http://accad.osu.edu/~smay/RManNotes/rsl-mode.el"
  "rsl-mode.el")
 
 ;; A file with machine specific settings.
@@ -110,8 +95,11 @@
 ;; Load magnars' string manipulation library
 (require 's)
 
+(require 'ack-and-a-half)
+
 ;; Seed RNG
 (random t)
 
-;; Start server for emacsclient
-(server-start)
+;; SML should respect theme colours
+; (setq sml/theme 'black)
+(sml/setup)

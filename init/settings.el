@@ -4,8 +4,20 @@
 ; ## Generic settings ##
 
 ; Hide those ugly tool bars
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+
+(defun disable-scroll-bar ()
+  (scroll-bar-mode 0))
+
+; And remember to do it if I create a new frame.
+(add-hook 'before-make-frame-hook 'disable-scroll-bar)
+
+;; Don't make any noises, don't flash, just leave me alone
+(setq ring-bell-function 'ignore)
+
+;; Go away go away
+(setq initial-scratch-message "")
 
 (flx-ido-mode 1)
 (setq ido-use-faces nil)
@@ -26,7 +38,7 @@
   (blink-cursor-mode -1))
 
 ; Fix some defaults
-(setq visible-bell t
+(setq visible-bell nil
       inhibit-startup-message t
       color-theme-is-global t
       sentence-end-double-space nil
@@ -42,14 +54,16 @@
       ediff-split-window-function 'split-window-horizontally
       oddmuse-directory (concat user-emacs-directory "oddmuse")
       save-place-file (concat user-emacs-directory "places")
-      backup-directory-alist `(("." . ,(concat user-emacs-directory "backups")))
+      backup-directory-alist `((,(concat user-emacs-directory "backups")))
       diff-switches "-u")
 
-;; Fix mode line
-(if after-init-time (sml/setup)
-  (add-hook 'after-init-hook 'sml/setup))
+;; Fix keys on Linux
+(if is-linux
+    (setq x-super-keysym 'meta
+          x-alt-keysym 'alt))
 
 (setq smex-save-file (concat user-emacs-directory ".smex-items"))
+(setq smex-key-advice-ignore-menu-bar t)
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 
@@ -102,10 +116,10 @@
 
 (global-hl-line-mode -1)
 
-(set-face-attribute 'default nil :font "Source Code Pro 13")
-(set-default-font "Source Code Pro 13")
+(setq default-frame-alist '((font-backend . "xft")
+                            (font . "Source Code Pro-12")))
 
-(add-to-list 'after-make-frame-functions 'set-font)
+(set-default-font "Source Code Pro 12")
 
 ;; Don't make the nyan cat too long ... I have other stuff in the mode
 ;; bar as well!
@@ -216,4 +230,14 @@
 
 (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
 
-(provide 'init-settings)
+;; Display tabs as 4 spaces
+(setq default-tab-width 4)
+
+;; Set up Java home & path
+(setenv "JAVA_HOME" "/usr/lib/jvm/default")
+
+;; Use CUPS
+(setq lpr-command "xpp")
+
+
+(provide 'settings)

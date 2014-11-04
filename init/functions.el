@@ -22,11 +22,11 @@
 
 (defun custom-download-script (url filename)
   "Downloads an Elisp script, places it in ~/.emacs/other and then loads it"
-  
+
   ;; Ensure the directory exists
   (unless (file-exists-p "~/.emacs.d/other")
     (make-directory "~/.emacs.d/other"))
-  
+
   ;; Download file if it doesn't exist.
   (let ((file
          (concat "~/.emacs.d/other/" filename)))
@@ -107,7 +107,4 @@ Including indent-buffer, which should not be called automatically on save."
       (find-file (concat "/sudo:root@localhost:" (ido-read-file-name "File: ")))
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
-
-(provide 'init-functions)
-
-
+(provide 'functions)

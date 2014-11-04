@@ -59,15 +59,17 @@
 
 ;; Cider/nrepl stuff
 ;; I want history up/down without modifiers
-(define-key cider-repl-mode-map (kbd "<up>") 'cider-backward-input)
-(define-key cider-repl-mode-map (kbd "<down>") 'cider-forward-input)
+(define-key cider-repl-mode-map (kbd "<up>") 'cider-repl-backward-input)
+(define-key cider-repl-mode-map (kbd "<down>") 'cider-repl-forward-input)
 (define-key cider-repl-mode-map (kbd "C-<up>") 'previous-line)
 (define-key cider-repl-mode-map (kbd "C-<down>") 'next-line)
 
 ;; ... and ac-cider with C-c C-d
-(define-key cider-repl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
-(define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
+(define-key cider-repl-mode-map (kbd "C-c C-d") 'ac-cider-compliment-popup-doc)
+(define-key cider-mode-map (kbd "C-c C-d") 'ac-cider-compliment-popup-doc)
 (define-key cider-mode-map (kbd "C-c D") 'cider-doc)
 
+;; Org-mode agenda keys
+(global-set-key (kbd "C-c a") 'org-agenda)
 
-(provide 'init-bindings)
+(provide 'bindings)

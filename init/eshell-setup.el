@@ -6,15 +6,13 @@
 ;; Hide banner message ...
 (setq eshell-banner-message "")
 
-(defvar home-dir)
-(setq home-dir (expand-file-name "~"))
-
 (defun eshell-mode-hook-setup ()
   "Sets up EShell when it is loaded"
   (setq eshell-path-env (concat
 			 "/usr/local/bin:"
 			 (concat home-dir "/bin:")
 			 "/usr/local/share/python:"
+                         "/opt/java/bin"
 			 eshell-path-env))
 
   (setenv "PATH" eshell-path-env))
@@ -54,7 +52,7 @@
   "My EShell prompt displaying VC info and such"
   (concat
    (with-face (concat (clean-pwd (eshell/pwd)) " ") :foreground  "#96a6c8")
-   (with-face (vcprompt " -f \"(%s:%b%a%m) \"") :foreground "#5f627f")
+   ;(with-face (vcprompt " -f \"(%s:%b%a%m) \"") :foreground "#5f627f")
    (if (= 0 (user-uid))
        (with-face "#" :foreground "#f43841")
      (with-face "$" :foreground "#73c936"))
@@ -91,4 +89,4 @@
   (let ((inhibit-read-only t))
     (erase-buffer)))
 
-(provide 'init-eshell)
+(provide 'eshell-setup)
