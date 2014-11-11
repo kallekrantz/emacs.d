@@ -77,14 +77,18 @@
 ;; Transparently open compressed files
 (auto-compression-mode t)
 
-;;Load .sl files into rsl-mode
+;; Load .sl files into rsl-mode
 (add-to-list
  'auto-mode-alist
  '("\\.sl" . rsl-mode))
 
-;;Loads .m files automatically
+;; Loads .m files automatically
 (add-to-list
  'auto-mode-alist
  '("\\.m$" . octave-mode))
+
+;; Default .h files to c++-mode instead of c. I never write c.
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
 
 (provide 'modes)

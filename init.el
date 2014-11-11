@@ -47,6 +47,10 @@
     ac-cider-compliment
     cider
     clojure-mode
+
+    ; C++
+    cpputils-cmake
+    
 )
   "A list of packages to install at launch.")
 
@@ -69,6 +73,7 @@
 (mapc 'require '(functions
                  settings
                  modes
+                 hooks
                  bindings
                  eshell-setup))
 
