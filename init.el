@@ -13,25 +13,33 @@
 (package-initialize)
 
 (defvar my-pkgs
-  '(; Basic functionality
+  '(;; All packages
+    ac-cider-compliment
     ace-jump-mode
     ack-and-a-half
     browse-kill-ring
+    cider
+    clojure-mode
     confluence
     dash
+    dockerfile-mode
+    erlang
     flx-ido
     flycheck
     go-mode
     haskell-mode
+    hi2
     idle-highlight-mode
     ido-ubiquitous
     iy-go-to-char
     magit
+    markdown-mode+
     multiple-cursors
     mvn
     nyan-mode
     paredit
     password-store
+    pkgbuild-mode
     projectile
     puppet-mode
     rainbow-delimiters
@@ -39,8 +47,8 @@
     rust-mode
     markdown-mode
     s
-    smex
     smart-mode-line
+    smex
     switch-window
     undo-tree
 
@@ -52,7 +60,7 @@
     ; C++
     cpputils-cmake
     
-)
+    )
   "A list of packages to install at launch.")
 
 (dolist (p my-pkgs)
@@ -76,7 +84,10 @@
                  modes
                  hooks
                  bindings
-                 eshell-setup))
+                 eshell-setup
+                 clojure
+                 haskell-setup
+                 ))
 
 (add-to-list 'load-path (concat user-emacs-directory "scripts"))
 
@@ -107,5 +118,5 @@
 (random t)
 
 ;; SML should respect theme colours
-; (setq sml/theme 'black)
+;; (setq sml/theme 'black)
 (sml/setup)
