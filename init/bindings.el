@@ -72,4 +72,10 @@
 ;; Org-mode agenda keys
 (global-set-key (kbd "C-c a") 'org-agenda)
 
+;; For some reason I like killing my current buffer
+(global-set-key (kbd "C-c k") 'kill-this-buffer)
+
+;; Compiling in emacs goodness
+(global-set-key (kbd "C-c c") 'compile)
+
 (provide 'bindings)

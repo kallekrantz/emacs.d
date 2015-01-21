@@ -90,5 +90,11 @@
 ;; Default .h files to c++-mode instead of c. I never write c.
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
+;; Enable Cmake mode automatically
+(setq auto-mode-alist
+	  (append
+	   '(("CMakeLists\\.txt\\'" . cmake-mode))
+	   '(("\\.cmake\\'" . cmake-mode))
+	   auto-mode-alist))
 
 (provide 'modes)

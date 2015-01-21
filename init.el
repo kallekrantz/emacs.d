@@ -37,6 +37,7 @@
     rainbow-delimiters
     rainbow-mode
     rust-mode
+    markdown-mode
     s
     smex
     smart-mode-line
