@@ -76,4 +76,6 @@
 	   '(("\\.cmake\\'" . cmake-mode))
 	   auto-mode-alist))
 
+(require 'flymake-cursor)
+
 (provide 'modes)

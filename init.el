@@ -51,17 +51,22 @@
     smex
     switch-window
     undo-tree
+    exec-path-from-shell
+    flymake-cursor
 
-    ; Clojure
+                                        ; Clojure
     ac-cider-compliment
     cider
     clojure-mode
 
-    ; C++
+                                        ; C++
     cpputils-cmake
     
+                                        ; Latex utilities
+    auctex
     )
-  "A list of packages to install at launch.")
+  "A list of packages to install at launch."
+  )
 
 (dolist (p my-pkgs)
   (when (not (package-installed-p p))
@@ -85,14 +90,18 @@
                  hooks
                  bindings
                  eshell-setup
-                 clojure
-                 haskell-setup
+                 latex-setup
+                 ;;                 clojure
+                 ;;                 haskell-setup
                  ))
 
 (add-to-list 'load-path (concat user-emacs-directory "scripts"))
 
 (setq custom-file (concat user-emacs-directory "init/custom.el"))
 (load custom-file)
+
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 (custom-download-script
  "https://gist.github.com/gongo/1789605/raw/526e3f21dc7d6cef20951cf0ce5d51b90b7821ff/json-reformat.el"
