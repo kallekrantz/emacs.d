@@ -22,7 +22,6 @@
 
 (add-hook 'LaTeX-mode-hook 'turn-on-outline-minor-mode)
 (add-hook 'latex-mode-hook 'turn-on-outline-minor-mode)
-(setq outline-minor-mode-prefix "C-c C-o")
 
 (require 'tex-site)
 (autoload 'reftex-mode "reftex" "RefTeX Minor Mode" t)

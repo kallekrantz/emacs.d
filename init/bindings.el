@@ -66,4 +66,9 @@
 ;; Compiling in emacs goodness
 (global-set-key (kbd "C-c c") 'compile)
 
+;; Keymaps to navigate to the errors
+(add-hook 'python-mode-hook '(lambda () (define-key python-mode-map "\C-cn" 'flymake-goto-next-error)))
+(add-hook 'python-mode-hook '(lambda () (define-key python-mode-map "\C-cp" 'flymake-goto-prev-error)))
+
+
 (provide 'bindings)

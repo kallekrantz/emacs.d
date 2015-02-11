@@ -8,6 +8,9 @@
 ;; precendence.
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
+;; Elpy
+(add-to-list 'package-archives '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+
 ;; And load things!
 (package-refresh-contents)
 (package-initialize)
@@ -44,6 +47,7 @@
     puppet-mode
     rainbow-delimiters
     rainbow-mode
+    outline-magic
     rust-mode
     markdown-mode
     s
@@ -64,6 +68,10 @@
     
                                         ; Latex utilities
     auctex
+
+                                        ; Python
+    virtualenvwrapper
+    elpy
     )
   "A list of packages to install at launch."
   )
@@ -91,11 +99,15 @@
                  bindings
                  eshell-setup
                  latex-setup
+                 outline-setup
+                 org-setup
+                 python-setup
                  ;;                 clojure
                  ;;                 haskell-setup
                  ))
 
 (add-to-list 'load-path (concat user-emacs-directory "scripts"))
+(add-to-list 'load-path (concat user-emacs-directory "other"))
 
 (setq custom-file (concat user-emacs-directory "init/custom.el"))
 (load custom-file)
@@ -129,3 +141,17 @@
 ;; SML should respect theme colours
 ;; (setq sml/theme 'black)
 (sml/setup)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (virtualenvwrapper undo-tree switch-window smex smart-mode-line rust-mode rainbow-mode rainbow-delimiters puppet-mode projectile pkgbuild-mode password-store paredit outline-magic nyan-mode mvn multiple-cursors markdown-mode+ magit iy-go-to-char ido-ubiquitous idle-highlight-mode hi2 haskell-mode go-mode flymake-cursor flycheck flx-ido exec-path-from-shell erlang elpy dockerfile-mode cpputils-cmake confluence browse-kill-ring auctex ack-and-a-half ace-jump-mode ac-cider-compliment))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
