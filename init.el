@@ -44,6 +44,7 @@
     password-store
     pkgbuild-mode
     projectile
+    project-explorer
     puppet-mode
     rainbow-delimiters
     rainbow-mode
@@ -70,8 +71,8 @@
     auctex
 
                                         ; Python
+    pytest
     virtualenvwrapper
-    elpy
     )
   "A list of packages to install at launch."
   )
@@ -148,7 +149,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (virtualenvwrapper undo-tree switch-window smex smart-mode-line rust-mode rainbow-mode rainbow-delimiters puppet-mode projectile pkgbuild-mode password-store paredit outline-magic nyan-mode mvn multiple-cursors markdown-mode+ magit iy-go-to-char ido-ubiquitous idle-highlight-mode hi2 haskell-mode go-mode flymake-cursor flycheck flx-ido exec-path-from-shell erlang elpy dockerfile-mode cpputils-cmake confluence browse-kill-ring auctex ack-and-a-half ace-jump-mode ac-cider-compliment))))
+    (virtualenvwrapper undo-tree switch-window smex smart-mode-line rust-mode rainbow-mode rainbow-delimiters pytest puppet-mode projectile project-explorer pkgbuild-mode password-store paredit outline-magic nyan-mode mvn multiple-cursors markdown-mode+ magit iy-go-to-char ido-ubiquitous idle-highlight-mode hi2 haskell-mode go-mode flymake-cursor flycheck flx-ido exec-path-from-shell erlang elpy dockerfile-mode cpputils-cmake confluence browse-kill-ring auctex ack-and-a-half ace-jump-mode ac-cider-compliment))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
