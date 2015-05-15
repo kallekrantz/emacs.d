@@ -1,23 +1,25 @@
 ;; Configure package manager
 (require 'package)
 
+(package-initialize)
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+
 ;; Add Marmalade repo
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 ;; ... and melpa. Melpa packages that exist on marmalade will have
 ;; precendence.
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
 ;; Elpy
-(add-to-list 'package-archives '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+ (add-to-list 'package-archives '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 
 ;; And load things!
 (package-refresh-contents)
-(package-initialize)
 
 (defvar my-pkgs
   '(;; All packages
-    ac-cider-compliment
+    auto-complete
     ace-jump-mode
     ack-and-a-half
     browse-kill-ring
@@ -60,7 +62,6 @@
     flymake-cursor
 
                                         ; Clojure
-    ac-cider-compliment
     cider
     clojure-mode
 
@@ -121,6 +122,10 @@
  "json-reformat.el")
 
 (custom-download-script
+ "https://raw.githubusercontent.com/jakemcc/ac-cider-compliment/master/ac-cider-compliment.el"
+ "ac-cider-compliment.el")
+
+(custom-download-script
  "http://accad.osu.edu/~smay/RManNotes/rsl-mode.el"
  "rsl-mode.el")
 
@@ -149,7 +154,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (virtualenvwrapper undo-tree switch-window smex smart-mode-line rust-mode rainbow-mode rainbow-delimiters pytest puppet-mode projectile project-explorer pkgbuild-mode password-store paredit outline-magic nyan-mode mvn multiple-cursors markdown-mode+ magit iy-go-to-char ido-ubiquitous idle-highlight-mode hi2 haskell-mode go-mode flymake-cursor flycheck flx-ido exec-path-from-shell erlang elpy dockerfile-mode cpputils-cmake confluence browse-kill-ring auctex ack-and-a-half ace-jump-mode ac-cider-compliment))))
+    (auto-complete virtualenvwrapper undo-tree switch-window smex smart-mode-line rust-mode rainbow-mode rainbow-delimiters pytest puppet-mode projectile project-explorer pkgbuild-mode password-store paredit outline-magic nyan-mode mvn multiple-cursors markdown-mode+ magit iy-go-to-char ido-ubiquitous idle-highlight-mode hi2 haskell-mode go-mode flymake-cursor flycheck flx-ido exec-path-from-shell erlang dockerfile-mode cpputils-cmake confluence cider browse-kill-ring auctex ack-and-a-half ace-jump-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
