@@ -25,6 +25,10 @@
 
 (setq uniquify-buffer-name-style 'forward)
 
+;; Give me a line!
+(setq-default cursor-type 'bar) 
+
+
 ;;; Code:
 
 (add-to-list 'exec-path "/usr/local/bin")
