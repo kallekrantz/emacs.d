@@ -107,4 +107,18 @@ Including indent-buffer, which should not be called automatically on save."
       (find-file (concat "/sudo:root@localhost:" (ido-read-file-name "File: ")))
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
+(defun ni-set-window-width (n)
+  "Set the selected window's width."
+  (adjust-window-trailing-edge (selected-window) (- n (window-width)) t))
+
+(defun set-window-width ()
+  "Set the selected window's width."
+  (interactive
+   (ni-set-window-width  (read-number "Width: "))
+   ))
+
+(defun set-window-width-fill ()
+  (interactive)
+  (ni-set-window-width fill-column))
+
 (provide 'functions)

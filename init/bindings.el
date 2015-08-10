@@ -48,6 +48,12 @@
 ;; Replace standard goto-line with goto-line-with-feedback
 (global-set-key (kbd "M-g g") 'goto-line-with-feedback)
 
+;; Set width of window
+(global-set-key (kbd "M-g w") 'set-window-width)
+
+;; Set the window width to the fill-column variable
+(global-set-key (kbd "M-g e") 'set-window-width-fill)
+
 ;; Goodness from @magnars
 ;; I don't need to kill emacs that easily
 ;; the mnemonic is C-x REALLY QUIT
