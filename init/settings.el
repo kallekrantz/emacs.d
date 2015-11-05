@@ -1,5 +1,6 @@
 (require 'uniquify)
 (require 'smart-mode-line)
+(require 'ample-theme)
 
 ; ## Generic settings ##
 
@@ -28,6 +29,8 @@
 ;; Give me a line!
 (setq-default cursor-type 'bar) 
 
+;; I like columns. Give 'em to meeee
+(setq column-number-mode t)
 
 ;;; Code:
 
@@ -104,19 +107,7 @@
 (defalias 'auto-tail-revert-mode 'tail-mode)
 
 ;; ## Look and feel ##
-
-;; Themes! I download and install the ones I like and default the one
-;; I currently like most. This changes a lot because I hate
-;; everything. (It's in my nature, don't judge)
-(custom-download-theme
- "https://raw.github.com/owainlewis/emacs-color-themes/master/themes/hickey-theme.el"
- "hickey-theme.el")
-
-(custom-download-theme
- "https://raw.github.com/rexim/gruber-darker-theme/master/gruber-darker-theme.el"
- "gruber-darker-theme.el")
-
-(load-theme 'gruber-darker t)
+(load-theme 'ample-flat t t)
 
 (global-hl-line-mode -1)
 
@@ -124,6 +115,10 @@
                             (font . "Source Code Pro-12")))
 
 (set-default-font "Source Code Pro 12")
+
+;; Give me a small amount of transparency
+(set-frame-parameter (selected-frame) 'alpha '(97))
+(add-to-list 'default-frame-alist '(alpha 97))
 
 ;; Don't make the nyan cat too long ... I have other stuff in the mode
 ;; bar as well!
@@ -142,16 +137,6 @@
                          "d ")
                  line)
          'face 'linum)))
-
-(eval-after-load 'diff-mode
-  '(progn
-     (set-face-foreground 'diff-added "green4")
-     (set-face-foreground 'diff-removed "red3")))
-
-(eval-after-load 'magit
-  '(progn
-     (set-face-foreground 'magit-diff-add "green4")
-     (set-face-foreground 'magit-diff-del "red3")))
 
 ;; ## Mac specific settings ##
 

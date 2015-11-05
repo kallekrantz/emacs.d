@@ -12,7 +12,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
 ;; Elpy
- (add-to-list 'package-archives '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+(add-to-list 'package-archives '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 
 ;; And load things!
 (package-initialize)
@@ -63,6 +63,8 @@
     exec-path-from-shell
     flymake-cursor
     xml-rpc
+                                        ; Themes
+    ample-theme
 
                                         ; Clojure
     cider
@@ -75,8 +77,7 @@
     auctex
 
                                         ; Python
-    pytest
-    virtualenvwrapper
+    elpy
     )
   "A list of packages to install at launch."
   )
@@ -132,10 +133,6 @@
  "http://accad.osu.edu/~smay/RManNotes/rsl-mode.el"
  "rsl-mode.el")
 
-(custom-download-script
- "http://www.emacswiki.org/emacs/download/jira.el"
- "jira.el")
-
 ;; A file with machine specific settings.
 (load-file-if-exists "~/.emacs.d/init-local.el")
 
@@ -161,7 +158,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (virtualenvwrapper pytest auctex cpputils-cmake flymake-cursor exec-path-from-shell undo-tree switch-window smex smart-mode-line rust-mode outline-magic rainbow-mode rainbow-delimiters puppet-mode project-explorer projectile pkgbuild-mode password-store paredit nyan-mode mvn multiple-cursors markdown-mode+ magit iy-go-to-char ido-ubiquitous idle-highlight-mode hi2 haskell-mode go-mode flycheck flx-ido erlang dockerfile-mode confluence cider browse-kill-ring ack-and-a-half ace-jump-mode auto-complete))))
+    (elpy virtualenvwrapper undo-tree switch-window smex smart-mode-line rust-mode rainbow-mode rainbow-delimiters pytest pymacs puppet-mode projectile project-explorer pkgbuild-mode password-store paredit outline-magic nyan-mode mvn multiple-cursors markdown-mode+ magit jedi iy-go-to-char ido-ubiquitous idle-highlight-mode hi2 haskell-mode go-mode flymake-cursor flycheck flx-ido exec-path-from-shell erlang dockerfile-mode cpputils-cmake confluence cider browse-kill-ring auctex ample-theme ack-and-a-half ace-jump-mode))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

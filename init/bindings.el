@@ -76,5 +76,7 @@
 (add-hook 'python-mode-hook '(lambda () (define-key python-mode-map "\C-cn" 'flymake-goto-next-error)))
 (add-hook 'python-mode-hook '(lambda () (define-key python-mode-map "\C-cp" 'flymake-goto-prev-error)))
 
+;; I want to be able to recompile anything.
+(global-set-key (kbd "C-c r") 'recompile)
 
 (provide 'bindings)

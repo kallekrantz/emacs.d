@@ -1,15 +1,12 @@
-;; Helper for compilation. Close the compilation window if
-;; there was no error at all.
-(setq compilation-finish-functions 'compile-autoclose)
-(defun compile-autoclose (buffer string)
-  (cond ((string-match "finished" string)
-         (bury-buffer "*compilation*")
-         (winner-undo)
-         (message "Build successful."))
-        (t
-         (message "Compilation exited abnormally: %s" string))))
-;; Specify my function (maybe I should have done a lambda function)
+;; I want better compile windows..
+(setq special-display-buffer-names
+      '("*compilation*"))
 
+(setq special-display-function
+      (lambda (buffer &optional args)
+        (split-window)
+        (switch-to-buffer buffer)
+        (get-buffer-window buffer 0)))
 
 ;; for enabling cpputils
 (add-hook 'c-mode-common-hook
