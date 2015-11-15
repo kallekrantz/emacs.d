@@ -78,10 +78,6 @@
 
 (require 'flymake-cursor)
 
-;; Flycheck all the things
-(add-hook 'after-init-hook 'global-flycheck-mode)
-
-
 
 (defun etc-log-tail-handler ()
   (end-of-buffer)

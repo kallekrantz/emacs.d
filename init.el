@@ -133,6 +133,10 @@
  "http://accad.osu.edu/~smay/RManNotes/rsl-mode.el"
  "rsl-mode.el")
 
+(custom-download-script
+ "http://dishevelled.net/elisp/lambda-mode.el"
+ "lambda-mode.el")
+
 ;; A file with machine specific settings.
 (load-file-if-exists "~/.emacs.d/init-local.el")
 
@@ -158,7 +162,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (elpy virtualenvwrapper undo-tree switch-window smex smart-mode-line rust-mode rainbow-mode rainbow-delimiters pytest pymacs puppet-mode projectile project-explorer pkgbuild-mode password-store paredit outline-magic nyan-mode mvn multiple-cursors markdown-mode+ magit jedi iy-go-to-char ido-ubiquitous idle-highlight-mode hi2 haskell-mode go-mode flymake-cursor flycheck flx-ido exec-path-from-shell erlang dockerfile-mode cpputils-cmake confluence cider browse-kill-ring auctex ample-theme ack-and-a-half ace-jump-mode))))
+    (elpy auctex cpputils-cmake ample-theme flymake-cursor exec-path-from-shell undo-tree switch-window smex smart-mode-line rust-mode outline-magic rainbow-mode rainbow-delimiters puppet-mode project-explorer projectile pkgbuild-mode password-store paredit nyan-mode mvn multiple-cursors markdown-mode+ magit iy-go-to-char ido-ubiquitous idle-highlight-mode hi2 haskell-mode go-mode flycheck flx-ido erlang dockerfile-mode dash confluence cider browse-kill-ring ack-and-a-half ace-jump-mode auto-complete))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -25,8 +25,5 @@
 (when (fboundp 'winner-mode)
   (winner-mode 1))
 
-;; Set as a minor mode for Python
-(require 'flycheck)
-(add-hook 'python-mode-hook 'flycheck-mode)
 (require 'project-explorer)
 (provide 'hooks)

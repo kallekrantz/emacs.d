@@ -11,6 +11,12 @@
 (defun disable-scroll-bar ()
   (scroll-bar-mode 0))
 
+;; Emacs scrolling by default is just damn awful..
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+(setq mouse-wheel-progressive-speed nil)
+(setq mouse-wheel-follow-mouse 't)
+(setq scroll-step 1)
+
 ; And remember to do it if I create a new frame.
 (add-hook 'before-make-frame-hook 'disable-scroll-bar)
 
