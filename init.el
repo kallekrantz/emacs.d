@@ -129,14 +129,6 @@
  "https://raw.githubusercontent.com/jakemcc/ac-cider-compliment/master/ac-cider-compliment.el"
  "ac-cider-compliment.el")
 
-(custom-download-script
- "http://accad.osu.edu/~smay/RManNotes/rsl-mode.el"
- "rsl-mode.el")
-
-(custom-download-script
- "http://dishevelled.net/elisp/lambda-mode.el"
- "lambda-mode.el")
-
 ;; A file with machine specific settings.
 (load-file-if-exists "~/.emacs.d/init-local.el")
 
@@ -151,7 +143,7 @@
 
 ;; Seed RNG
 (random t)
-
+(server-start)
 ;; SML should respect theme colours
 ;; (setq sml/theme 'black)
 (sml/setup)

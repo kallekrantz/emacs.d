@@ -56,11 +56,6 @@
 ;; Transparently open compressed files
 (auto-compression-mode t)
 
-;; Load .sl files into rsl-mode
-(add-to-list
- 'auto-mode-alist
- '("\\.sl" . rsl-mode))
-
 ;; Loads .m files automatically
 (add-to-list
  'auto-mode-alist
