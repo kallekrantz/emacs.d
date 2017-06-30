@@ -1,7 +1,9 @@
 (require 'elpy)
+(require 'f)
 
 (elpy-enable)
+(require 'pyenv-mode-auto)
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
-(add-hook 'python-mode-hook #'lambda-mode 1)
 (provide 'python-setup)
 ;;; python-setup ends here
